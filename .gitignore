@@ -1,6 +1,9 @@
 # Environment variables (contains API keys)
 .env
 
+# Claude settings (contains API keys)
+.claude/
+
 # macOS
 .DS_Store
 
