@@ -1,0 +1,13 @@
+# Environment variables (contains API keys)
+.env
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+
+# Docker volumes data
+postgres_data/
+prometheus_data/

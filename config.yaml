@@ -1,0 +1,96 @@
+# Based on https://docs.github.com/en/copilot/reference/ai-models/supported-models
+
+litellm_settings:
+  callbacks: ["prometheus"]
+  drop_params: true # thinking is not supported
+
+model_list:
+  # OpenAI Models
+  - model_name: gpt-4.1
+    litellm_params:
+      model: github_copilot/gpt-4.1
+      extra_headers: {"Editor-Version": "vscode/1.85.1", "Copilot-Integration-Id": "vscode-chat"}
+  - model_name: gpt-5
+    litellm_params:
+      model: github_copilot/gpt-5
+      extra_headers: {"Editor-Version": "vscode/1.85.1", "Copilot-Integration-Id": "vscode-chat"}
+  - model_name: gpt-5-mini
+    litellm_params:
+      model: github_copilot/gpt-5-mini
+      extra_headers: {"Editor-Version": "vscode/1.85.1", "Copilot-Integration-Id": "vscode-chat"}
+  - model_name: gpt-5-codex
+    litellm_params:
+      model: github_copilot/gpt-5-codex
+      extra_headers: {"Editor-Version": "vscode/1.85.1", "Copilot-Integration-Id": "vscode-chat"}
+  - model_name: gpt-5.1
+    litellm_params:
+      model: github_copilot/gpt-5.1
+      extra_headers: {"Editor-Version": "vscode/1.85.1", "Copilot-Integration-Id": "vscode-chat"}
+  - model_name: gpt-5.1-codex
+    litellm_params:
+      model: github_copilot/gpt-5.1-codex
+      extra_headers: {"Editor-Version": "vscode/1.85.1", "Copilot-Integration-Id": "vscode-chat"}
+  - model_name: gpt-5.1-codex-mini
+    litellm_params:
+      model: github_copilot/gpt-5.1-codex-mini
+      extra_headers: {"Editor-Version": "vscode/1.85.1", "Copilot-Integration-Id": "vscode-chat"}
+  - model_name: gpt-5.1-codex-max
+    litellm_params:
+      model: github_copilot/gpt-5.1-codex-max
+      extra_headers: {"Editor-Version": "vscode/1.85.1", "Copilot-Integration-Id": "vscode-chat"}
+  - model_name: gpt-5.2
+    litellm_params:
+      model: github_copilot/gpt-5.2
+      extra_headers: {"Editor-Version": "vscode/1.85.1", "Copilot-Integration-Id": "vscode-chat"}
+  - model_name: gpt-5.2-codex
+    litellm_params:
+      model: github_copilot/gpt-5.2-codex
+      extra_headers: {"Editor-Version": "vscode/1.85.1", "Copilot-Integration-Id": "vscode-chat"}
+
+  # Anthropic Models
+  - model_name: claude-haiku-4.5
+    litellm_params:
+      model: github_copilot/claude-haiku-4.5
+      extra_headers: {"Editor-Version": "vscode/1.85.1", "Copilot-Integration-Id": "vscode-chat"}
+  - model_name: claude-opus-4.1
+    litellm_params:
+      model: github_copilot/claude-opus-4.1
+      extra_headers: {"Editor-Version": "vscode/1.85.1", "Copilot-Integration-Id": "vscode-chat"}
+  - model_name: claude-opus-4.5
+    litellm_params:
+      model: github_copilot/claude-opus-4.5
+      extra_headers: {"Editor-Version": "vscode/1.85.1", "Copilot-Integration-Id": "vscode-chat"}
+  - model_name: claude-sonnet-4
+    litellm_params:
+      model: github_copilot/claude-sonnet-4
+      extra_headers: {"Editor-Version": "vscode/1.85.1", "Copilot-Integration-Id": "vscode-chat"}
+  - model_name: claude-sonnet-4.5
+    litellm_params:
+      model: github_copilot/claude-sonnet-4.5
+      extra_headers: {"Editor-Version": "vscode/1.85.1", "Copilot-Integration-Id": "vscode-chat"}
+
+  # Google Models
+  - model_name: gemini-2.5-pro
+    litellm_params:
+      model: github_copilot/gemini-2.5-pro
+      extra_headers: {"Editor-Version": "vscode/1.85.1", "Copilot-Integration-Id": "vscode-chat"}
+  - model_name: gemini-3-flash
+    litellm_params:
+      model: github_copilot/gemini-3-flash
+      extra_headers: {"Editor-Version": "vscode/1.85.1", "Copilot-Integration-Id": "vscode-chat"}
+  - model_name: gemini-3-pro
+    litellm_params:
+      model: github_copilot/gemini-3-pro
+      extra_headers: {"Editor-Version": "vscode/1.85.1", "Copilot-Integration-Id": "vscode-chat"}
+
+  # xAI Models
+  - model_name: grok-code-fast-1
+    litellm_params:
+      model: github_copilot/grok-code-fast-1
+      extra_headers: {"Editor-Version": "vscode/1.85.1", "Copilot-Integration-Id": "vscode-chat"}
+
+  # Fine-tuned Models
+  - model_name: raptor-mini
+    litellm_params:
+      model: github_copilot/raptor-mini
+      extra_headers: {"Editor-Version": "vscode/1.85.1", "Copilot-Integration-Id": "vscode-chat"}
