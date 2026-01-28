@@ -16,7 +16,7 @@ fi
 MASTER_KEY=$(grep LITELLM_MASTER_KEY .env | cut -d'=' -f2)
 
 # Create Claude Code settings directory if it doesn't exist
-CLAUDE_SETTINGS_DIR="$HOME/.claude"
+CLAUDE_SETTINGS_DIR="./.claude"
 CLAUDE_SETTINGS_FILE="$CLAUDE_SETTINGS_DIR/settings.json"
 
 mkdir -p "$CLAUDE_SETTINGS_DIR"
@@ -104,12 +104,10 @@ echo "🔐 Waiting for GitHub device code..."
             echo ""
             echo "════════════════════════════════════════════════"
             echo ""
-            echo "   📋 GitHub Device Code:  >>>  \033[1;33;44m $CODE \033[0m  <<<"
+            echo "   📋 GitHub Device Code:  >>>  $CODE  <<<"
             echo ""
             copy_to_clipboard "$CODE" && echo "   ✅ Code copied to clipboard!"
             echo "════════════════════════════════════════════════"
-            echo ""
-            echo "🌐 Opening GitHub authentication page..."
             open_url "https://github.com/login/device"
             break
         fi
