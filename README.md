@@ -24,14 +24,13 @@ This project allows you to proxy Claude Code API calls to GitHub Copilot models.
 
 1. **Run the setup script:**
    ```bash
-    chmod +x setup.sh
-    ./setup.sh
+   chmod +x setup.sh
+   ./setup.sh
    ```
    or
 
    ```bash
-    chmod +x setup.sh
-    ./setup.sh
+   bash setup.sh
    ```
 
    The script will:
