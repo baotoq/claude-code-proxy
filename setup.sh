@@ -70,26 +70,51 @@ open_url() {
     fi
 }
 
-# Monitor logs for the device code (timeout after 60 seconds)
-timeout 60 docker compose logs -f litellm 2>&1 | while read -r line; do
-    echo "$line"
-    # Look for the GitHub device code pattern
-    if echo "$line" | grep -q "https://github.com/login/device"; then
-        echo ""
-        echo "🌐 Opening GitHub authentication page..."
-        open_url "https://github.com/login/device"
-        break
+# Function to copy to clipboard cross-platform
+copy_to_clipboard() {
+    if command -v pbcopy &> /dev/null; then
+        echo -n "$1" | pbcopy  # macOS
+        return 0
+    elif command -v xclip &> /dev/null; then
+        echo -n "$1" | xclip -selection clipboard  # Linux
+        return 0
+    elif command -v xsel &> /dev/null; then
+        echo -n "$1" | xsel --clipboard  # Linux alternative
+        return 0
+    else
+        return 1
     fi
-    # Also check for the code itself (usually appears as "code: XXXX-XXXX")
-    if echo "$line" | grep -qE "code[:\s]+[A-Z0-9]{4}-[A-Z0-9]{4}"; then
-        CODE=$(echo "$line" | grep -oE "[A-Z0-9]{4}-[A-Z0-9]{4}")
-        echo ""
-        echo "📋 Your code is: $CODE"
-        echo "🌐 Opening GitHub authentication page..."
-        open_url "https://github.com/login/device"
-        break
-    fi
-done &
+}
+
+echo ""
+echo "📜 Streaming LiteLLM logs (Ctrl+C to stop)..."
+docker compose logs -f litellm &
+LOG_STREAM_PID=$!
+
+trap "kill $LOG_STREAM_PID 2>/dev/null" EXIT
+
+echo ""
+echo "🔐 Waiting for GitHub device code..."
+
+(
+    timeout 90 docker compose logs -f litellm 2>&1 | while read -r line; do
+        CODE=$(grep -oE "\b[A-Z0-9]{4}-[A-Z0-9]{4}\b" <<< "$line" | head -1)
+
+        if [ -n "$CODE" ]; then
+            echo ""
+            echo "════════════════════════════════════════════════"
+            echo ""
+            echo "   📋 GitHub Device Code:  >>>  \033[1;33;44m $CODE \033[0m  <<<"
+            echo ""
+            copy_to_clipboard "$CODE" && echo "   ✅ Code copied to clipboard!"
+            echo "════════════════════════════════════════════════"
+            echo ""
+            echo "🌐 Opening GitHub authentication page..."
+            open_url "https://github.com/login/device"
+            break
+        fi
+    done
+) &
 
 echo ""
 echo "📋 Next steps:"

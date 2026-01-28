@@ -24,18 +24,25 @@ This project allows you to proxy Claude Code API calls to GitHub Copilot models.
 
 1. **Run the setup script:**
    ```bash
-   sh setup.sh
+    chmod +x setup.sh
+    ./setup.sh
+   ```
+   or
+
+   ```bash
+    chmod +x setup.sh
+    ./setup.sh
    ```
 
    The script will:
    - Generate API keys in `.env`
    - Configure Claude Code settings
    - Start Docker containers
-   - **Automatically open your browser** for GitHub authentication when the device code appears
+   - **Automatically copy the device code to clipboard** and open your browser for GitHub authentication
 
 2. **Complete GitHub authentication:**
    - The browser will open to `https://github.com/login/device`
-   - Enter the code shown in the terminal
+   - Paste the code (already copied to clipboard) or enter the highlighted code from terminal
    - Authorize the application
 
 3. **Restart Claude Code** to use the new settings.
